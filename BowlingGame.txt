@@ -1,7 +1,31 @@
 #include <iostream>
 #include <vector>
+using namespace std;
 
 class Bowling_game {
+    vector<int> rolls;
+    int currentRoll;
+
+    bool is_Strike(int rollIndex) {
+        return rolls[rollIndex] == 10;
+    }
+
+    bool is_Spare(int rollIndex) {
+        return rolls[rollIndex] + rolls[rollIndex + 1] == 10;
+    }
+
+    int strikeBonus(int rollIndex) {
+        return rolls[rollIndex + 1] + rolls[rollIndex + 2];
+    }
+
+    int spareBonus(int rollIndex) {
+        return rolls[rollIndex + 2];
+    }
+
+    int sumOfBallsInFrame(int rollIndex) {
+        return rolls[rollIndex] + rolls[rollIndex + 1];
+    }
+
 public:
     Bowling_game() : rolls(21, 0), currentRoll(0) {}
 
@@ -27,29 +51,6 @@ public:
         return total_Score;
     }
 
-private:
-    std::vector<int> rolls;
-    int currentRoll;
-
-    bool is_Strike(int rollIndex) {
-        return rolls[rollIndex] == 10;
-    }
-
-    bool is_Spare(int rollIndex) {
-        return rolls[rollIndex] + rolls[rollIndex + 1] == 10;
-    }
-
-    int strikeBonus(int rollIndex) {
-        return rolls[rollIndex + 1] + rolls[rollIndex + 2];
-    }
-
-    int spareBonus(int rollIndex) {
-        return rolls[rollIndex + 2];
-    }
-
-    int sumOfBallsInFrame(int rollIndex) {
-        return rolls[rollIndex] + rolls[rollIndex + 1];
-    }
 };
 
 int main() {
