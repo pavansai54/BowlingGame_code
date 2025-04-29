@@ -56,21 +56,21 @@ public:
 int main() {
     Bowling_game Ball_game;
     // Example rolls
-    Ball_game.roll(10); // Strike
+    Ball_game.roll(10); 
     Ball_game.roll(7);
-    Ball_game.roll(3);  // Spare
+    Ball_game.roll(3);  
     Ball_game.roll(9);
     Ball_game.roll(0);
-    Ball_game.roll(10); // Strike
+    Ball_game.roll(10); 
     Ball_game.roll(0);
     Ball_game.roll(8);
     Ball_game.roll(8);
-    Ball_game.roll(2);  // Spare
+    Ball_game.roll(2); 
     Ball_game.roll(0);
     Ball_game.roll(6);
-    Ball_game.roll(10); // Strike
-    Ball_game.roll(10); // Strike
-    Ball_game.roll(10); // Strike
+    Ball_game.roll(10); 
+    Ball_game.roll(10); 
+    Ball_game.roll(10); 
     Ball_game.roll(8);
     Ball_game.roll(1);
 
