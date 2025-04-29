@@ -1,0 +1,78 @@
+#include <iostream>
+#include <vector>
+
+class Bowling_game {
+public:
+    Bowling_game() : rolls(21, 0), currentRoll(0) {}
+
+    void roll(int pins) {
+        rolls[currentRoll++] = pins;
+    }
+
+    int score() {
+        int total_Score = 0;
+        int rollIndex = 0;
+        for (int frame = 0; frame < 10; ++frame) {
+            if (is_Strike(rollIndex)) {
+                total_Score += 10 + strikeBonus(rollIndex);
+                rollIndex++;
+            } else if (is_Spare(rollIndex)) {
+                total_Score += 10 + spareBonus(rollIndex);
+                rollIndex += 2;
+            } else {
+                total_Score += sumOfBallsInFrame(rollIndex);
+                rollIndex += 2;
+            }
+        }
+        return total_Score;
+    }
+
+private:
+    std::vector<int> rolls;
+    int currentRoll;
+
+    bool is_Strike(int rollIndex) {
+        return rolls[rollIndex] == 10;
+    }
+
+    bool is_Spare(int rollIndex) {
+        return rolls[rollIndex] + rolls[rollIndex + 1] == 10;
+    }
+
+    int strikeBonus(int rollIndex) {
+        return rolls[rollIndex + 1] + rolls[rollIndex + 2];
+    }
+
+    int spareBonus(int rollIndex) {
+        return rolls[rollIndex + 2];
+    }
+
+    int sumOfBallsInFrame(int rollIndex) {
+        return rolls[rollIndex] + rolls[rollIndex + 1];
+    }
+};
+
+int main() {
+    Bowling_game Ball_game;
+    // Example rolls
+    Ball_game.roll(10); // Strike
+    Ball_game.roll(7);
+    Ball_game.roll(3);  // Spare
+    Ball_game.roll(9);
+    Ball_game.roll(0);
+    Ball_game.roll(10); // Strike
+    Ball_game.roll(0);
+    Ball_game.roll(8);
+    Ball_game.roll(8);
+    Ball_game.roll(2);  // Spare
+    Ball_game.roll(0);
+    Ball_game.roll(6);
+    Ball_game.roll(10); // Strike
+    Ball_game.roll(10); // Strike
+    Ball_game.roll(10); // Strike
+    Ball_game.roll(8);
+    Ball_game.roll(1);
+
+    std::cout << "Total Score: " << Ball_game.score() << std::endl;
+    return 0;
+}
